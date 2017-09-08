@@ -1,33 +1,21 @@
+
 <p id="notice"><%= notice %></p>
 
 <h1>Products</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Image url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.description %></td>
-        <td><img src="<%= product.image_url %>" class="img-responsive" width="100" height="100"/></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div class="container-fluid">
+<% @products.each do |product| %>
+<div class="row">
+<div class="col-sm-3 col-md-6"> <%= link_to product.name, product %></div>
+<div class="col-sm-3 col-md-6"> <%= product.description %></div>
+<div class="col-sm-3 col-md-6"> <%= product.colour %></div>
+<div class="col-sm-3 col-md-6"> <img src="<%= product.image_url %>" class="img-responsive" width="100" height="100"/></div>
+<div class="col-sm-3 col-md-6"> <%= link_to 'Edit', edit_product_path(product) %></div>
+<div class="col-sm-3 col-md-6"> <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+</div>
+<% end %>
+</div>
 <br>
 
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'New Product', new_product_path %> 
 
 
