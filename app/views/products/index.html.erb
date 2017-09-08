@@ -6,8 +6,8 @@
 <% @products.each do |product| %>
 <div class="row">
 <div class="col-sm-3 col-md-6"> <%= link_to product.name, product %></div>
-<div class="col-sm-3 col-md-6"> <%= product.description %></div>
 <div class="col-sm-3 col-md-6"> <%= product.colour %></div>
+<div class="col-sm-3 col-md-6"> <%= product.price %></div>
 <div class="col-sm-3 col-md-6"> <img src="<%= product.image_url %>" class="img-responsive" width="100" height="100"/></div>
 <div class="col-sm-3 col-md-6"> <%= link_to 'Edit', edit_product_path(product) %></div>
 <div class="col-sm-3 col-md-6"> <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></div>
