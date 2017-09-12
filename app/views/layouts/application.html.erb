@@ -20,9 +20,9 @@
       <a class="navbar-brand" href="/">Bike Berlin</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/">Home</a></li>
-      <li><a href="/static_pages/about">About</a></li>
-      <li><a href="/static_pages/contact">Contact</a></li>
+      <li><%= link_to "Home", static_pages_index_path %></li>
+      <li><%= link_to "About", static_pages_about_path %></li>
+      <li><%= link_to "Contact", static_pages_contact_path %></li>
     </ul>
   </div>
 </nav>

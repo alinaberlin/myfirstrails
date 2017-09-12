@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.limit(3)
   end
   def hello
   end
@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity } 
       end
     end
   end
