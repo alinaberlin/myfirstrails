@@ -18,8 +18,15 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/">Bike Berlin</a>
-    </div>
+      <div><%= form_with(url: products_path, method: 'get') do |form| %>
+          <%= form.label :q, 'Search for:' %>
+           <%= form.text_field :q, id: 'q', value: params[:q] %>
+          <%= form.submit 'Search' %>     
+          <% end %>
+      </div>
     <ul class="nav navbar-nav">
+      <li><%= link_to "Order", orders_url %></li>
+      <li><%= link_to "Products", products_url %></li>
       <li><%= link_to "Home", static_pages_index_path %></li>
       <li><%= link_to "About", static_pages_about_path %></li>
       <li><%= link_to "Contact", static_pages_contact_path %></li>

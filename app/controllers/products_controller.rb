@@ -3,9 +3,16 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.json
-  def index
-    @products = Product.limit(3)
+ def index
+  if params[:q]
+    search_term = params[:q]
+    # return our filtered list here
+  else
+    @products = Product.all
   end
+end
+
+
   def hello
   end
   # GET /products/1
@@ -73,3 +80,4 @@ class ProductsController < ApplicationController
        params.require(:product).permit(:name, :description, :image_url, :colour, :price)
     end
 end
+
