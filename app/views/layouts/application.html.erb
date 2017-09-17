@@ -18,10 +18,11 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/">Bike Berlin</a>
-      <div><%= form_with(url: products_path, method: 'get') do |form| %>
-          <%= form.label :q, 'Search for:' %>
-           <%= form.text_field :q, id: 'q', value: params[:q] %>
-          <%= form.submit 'Search' %>     
+      <div>
+          <%= form_with(url: products_path, method: 'get', local: true) do |form| %>
+            <%= form.label :q, 'Search for:' %>
+            <%= form.text_field :q, id: 'q', value: params[:q] %>
+            <%= form.submit 'Search' %>     
           <% end %>
       </div>
     <ul class="nav navbar-nav">
