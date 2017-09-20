@@ -1,2 +1,24 @@
 <h1>You can contact me at:</h1>
 <p><a href="mailto:alina.ghetler@gmail.com?Subject=Contact" target="_top">alina.ghetler@gmail.com</a></p>
+
+<%= flash[:notice] %>
+
+<%= form_with(url: "/static_pages/thank_you", local: true) do  |form| %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control", placeholder: "Enter Name" %>
+      </div>        
+      <div class="form-group">
+        <%= form.label :email, "Email Address" %>
+        <%= form.text_field :email, class: "form-control", placeholder: "Enter Email" %>
+      </div>
+      <div class="form-group">
+        <%= form.label :message %>
+        <%= form.text_area :message, class: "form-control", placeholder: "Enter Message" %>
+      </div>        
+    </div>
+  </div>
+  <%= form.submit "Send" %>   
+<% end %>
