@@ -8,15 +8,15 @@
     <div class="col-md-4">
       <div class="form-group">
         <%= form.label :name %>
-        <%= form.text_field :name, class: "form-control", placeholder: "Enter Name" %>
+        <%= form.text_field :name, class: "form-control", placeholder: "Enter Name", :required => true%>
       </div>        
       <div class="form-group">
         <%= form.label :email, "Email Address" %>
-        <%= form.text_field :email, class: "form-control", placeholder: "Enter Email" %>
+        <%= form.text_field :email, class: "form-control", placeholder: "Enter Email", :required => true%>
       </div>
       <div class="form-group">
         <%= form.label :message %>
-        <%= form.text_area :message, class: "form-control", placeholder: "Enter Message" %>
+        <%= form.text_area :message, class: "form-control", placeholder: "Enter Message", :required => true%>
       </div>        
     </div>
   </div>
