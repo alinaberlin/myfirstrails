@@ -20,7 +20,8 @@ end
   # GET /products/1.json
   def show
   end
-
+  #To set up a controller with user authentication, just add this before_action (assuming your devise model is 'User'):
+  before_action :authenticate_user!
   # GET /products/new
   def new
     @product = Product.new

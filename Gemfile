@@ -52,4 +52,4 @@ gem 'jquery-rails'
 group :production do
   gem 'pg'
 end
-
+gem 'devise'
