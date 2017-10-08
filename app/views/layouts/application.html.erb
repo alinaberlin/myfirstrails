@@ -46,7 +46,10 @@
 
 <!-- Flash Notice Tags -->
 <% if notice %>
- <div id="notice" class="alert alert-warning"><%= notice %></div>
+    <p id="notice" class="alert alert-info"><%= notice %></p>
+<% end %>
+<% if alert %>
+    <p id="alert" class="alert alert-info"><span class="glyphicon glyphicon-warning-sign"></span><%= alert %></p>
 <% end %>
 
 <%= yield %>
