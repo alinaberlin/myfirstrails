@@ -29,10 +29,12 @@
 <%= link_to 'Back', products_path %>
 <div>
   <% comment = @product.comments.order(rating: :desc).first%>
+  <% if comment.present? %>
   <% (1..comment.rating).each do |i| %>
      <span class="glyphicon glyphicon-star"></span>
   <% end %>
   <br/>
   <%= comment.body %> 
+  <% end %>
   
 </div>
