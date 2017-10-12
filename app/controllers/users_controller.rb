@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :index]
+  #The CanCan gem includes a helper method called load_and_authorize_resource
   load_and_authorize_resource
 
   # GET /users
