@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-     @comments = @product.comments.order("created_at DESC") 
+     @comments = @product.comments.paginate(:page => params[:page], :per_page => 5).order("created_at DESC") 
   end
   #To set up a controller with user authentication, just add this before_action (assuming your devise model is 'User'):
   #before_action :authenticate_user!

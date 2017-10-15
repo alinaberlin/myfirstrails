@@ -31,7 +31,8 @@
   <p>Average Rating: <div class="rated" data-score="<%= @product.average_rating %>"></div> </p>
   <% comment = @product.comments.order(rating: :desc).first%>
  <%= render 'new_comment' %>
-<%= render partial: 'comments', locals: {comments: @product.comments} %>
+ <%= will_paginate @comments %>
+<%= render partial: 'comments', locals: {comments: @comments} %>
 </div>
 <!--Add this partial to the products show view after the product details by adding this to the bottom of products\show.html.erb. -->
  
