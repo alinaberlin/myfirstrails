@@ -28,13 +28,10 @@
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
 <div>
+  <p>Average Rating: <div class="rated" data-score="<%= @product.average_rating %>"></div> </p>
   <% comment = @product.comments.order(rating: :desc).first%>
-  <% if comment.present? %>
-  <% (1..comment.rating).each do |i| %>
-     <span class="glyphicon glyphicon-star"></span>
-  <% end %>
-  <br/>
-  <%= comment.body %> 
-  <% end %>
-  
+ <%= render 'new_comment' %>
+<%= render partial: 'comments', locals: {comments: @product.comments} %>
 </div>
+<!--Add this partial to the products show view after the product details by adding this to the bottom of products\show.html.erb. -->
+ 
