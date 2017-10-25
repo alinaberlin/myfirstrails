@@ -25,6 +25,11 @@
   <%= @product.price %>
 </p>
 
+<p><%= form_with(url: '/payments/create') do |form| %>
+  <%= render partial: "shared/stripe_checkout_button", locals: {product: @product}  %>
+<% end %>
+</p>
+
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
 <div>
