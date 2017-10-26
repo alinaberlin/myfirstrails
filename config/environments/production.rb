@@ -1,6 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  # logger is the 'proper' way to write text to the console as in production it can be told to log to a file, remote service, or any other place we want to store logs to be able to access and read them easily.
+  Rails.logger.level = 2
   # Code is not reloaded between requests.
   config.cache_classes = true
 
