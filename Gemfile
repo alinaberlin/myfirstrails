@@ -51,6 +51,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
 group :production do
   gem 'pg'
+  gem 'dalli'
 end
 gem 'devise'
 gem 'cancancan', '~> 1.10'
@@ -65,4 +66,3 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.0"
 end
 gem 'stripe'
-gem "brakeman", :require => false
