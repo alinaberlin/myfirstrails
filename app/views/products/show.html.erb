@@ -25,13 +25,17 @@
   <%= @product.price %>
 </p>
 
+<% if signed_in? %>
 <p><%= form_with(url: '/payment/create') do |form| %>
   <%= hidden_field_tag(:product_id, @product.id) %>
   <%= render partial: "shared/stripe_checkout_button", locals: {product: @product}  %>
 <% end %>
 </p>
+<% end %>
 
+<% if signed_in? && current_user.admin? %>
 <%= link_to 'Edit', edit_product_path(@product) %> |
+<% end %>
 <%= link_to 'Back', products_path %>
 <div>
   <p>Average Rating: <div class="rated" data-score="<%= @product.average_rating %>"></div> </p>
