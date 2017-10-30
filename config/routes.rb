@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   	resources :comments
   end
   resources :orders, only: [:index, :show, :create, :destroy]
-  
+  # mount ActionCable.server => '/cable'
+  mount ActionCable.server => '/cable'
   get 'static_pages/about'
 
   get 'static_pages/contact'
@@ -15,6 +16,6 @@ Rails.application.routes.draw do
   post 'static_pages/thank_you'
   post 'payment/create'
 
-
+  
 end
 
