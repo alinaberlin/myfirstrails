@@ -42,6 +42,7 @@
   <% comment = @product.comments.order(rating: :desc).first%>
  <%= render 'new_comment' %>
  <%= will_paginate @comments %>
+ <div class="alert alert-info" style="display:none" role="alert">A new comment was posted!</div>
 <%= render partial: 'comments', locals: {comments: @comments} %>
 </div>
 <!--Add this partial to the products show view after the product details by adding this to the bottom of products\show.html.erb. -->

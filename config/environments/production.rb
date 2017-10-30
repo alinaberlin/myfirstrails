@@ -91,5 +91,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   # set the cache store to use dalli with memcache
   config.cache_store = :dalli_store
+  config.web_socket_server_url = "wss://myalinarails.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://myalinarails.herokuapp.com', 'http://myalinarails.herokuapp.com']
 end
 
