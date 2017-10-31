@@ -18,6 +18,7 @@ class PaymentController < ApplicationController
       #create a new order if payment is succesfull(6.6)
       if charge.paid
         Order.create(user: @user, product: @product, total: @product.price)
+        flash[:notice] = "Your payment has been processed successfully"
       end
       #catching the Stripe::CardError error and handling it 
     rescue Stripe::CardError => e
