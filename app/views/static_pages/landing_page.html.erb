@@ -31,3 +31,19 @@
     	<span class="sr-only">Next</span>
   	</a>
 </div>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="page-header">
+				<h4>Newest Bikes</h4>
+			</div>
+		</div>
+		<% @products.each do |product| %>
+			<div class="col-sm-4 col-xs-12 pointer-hover" onclick="location.href='<%= url_for(action: 'show', controller: 'products', id: product.id) %>';">
+				<p><%= product.name %></p>
+			  <%= image_tag(product.image_url, class: 'img-responsive')  %>
+				<p><%= product.price %> &euro;</p>
+			</div>
+		<% end %>
+	</div>
+</div>

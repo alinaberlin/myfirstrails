@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <div class="row" data-product-id="<%= @product.id %>">
   <h4 id="notice"><%= notice %></h4>
   <p>
@@ -27,11 +28,11 @@
   </p>
 
   <% if signed_in? %>
-  <p><%= form_with(url: '/payment/create') do |form| %>
-    <%= hidden_field_tag(:product_id, @product.id) %>
-    <%= render partial: "shared/stripe_checkout_button", locals: {product: @product}  %>
-  <% end %>
-  </p>
+    <p><%= form_with(url: '/payment/create') do |form| %>
+      <%= hidden_field_tag(:product_id, @product.id) %>
+      <%= render partial: "shared/stripe_checkout_button", locals: {product: @product}  %>
+    <% end %>
+    </p>
   <% end %>
 
   <% if signed_in? && current_user.admin? %>
@@ -47,4 +48,5 @@
   <%= render partial: 'comments', locals: {comments: @comments} %>
   </div>
 <!--Add this partial to the products show view after the product details by adding this to the bottom of products\show.html.erb. -->
+</div>
 </div>

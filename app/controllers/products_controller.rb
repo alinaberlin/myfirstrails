@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
     #byebug
     if params[:q]
       search_term = params[:q]
+      @has_search_term = true
       @products = Product.search(search_term)
       # return our filtered list here
     else
