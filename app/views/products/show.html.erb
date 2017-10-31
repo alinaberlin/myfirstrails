@@ -1,52 +1,43 @@
 <div class="container-fluid">
-<div class="row" data-product-id="<%= @product.id %>">
-  <h4 id="notice"><%= notice %></h4>
-  <p>
-    <strong>Name:</strong>
-    <%= @product.name %>
-  </p>
+  <div class="row" data-product-id="<%= @product.id %>">
+    <h4 id="notice"><%= notice %></h4>
+    <div class="row products">
+      <div class="col-sm-12 col-md-6"> 
+        <img src="<%= @product.image_url %>" height="350" width="350" class="img-zoom" data-zoom-image />
+      </div>
+      <div class="col-sm-12 col-md-6"> 
+        <p>
+          <strong><%= @product.name %></strong>
+        </p>
+        <p>
+          <%= @product.description %>
+        </p>
+        <p>
+          <%= @product.price %> &euro;
+        </p>
 
-
-  <p>
-    <strong>Description:</strong>
-    <%= @product.description %>
-  </p>
-
-  <p>
-    <strong>Image url:</strong>
-    <img src="<%= @product.image_url %>" height="350" width="350" class="img-zoom" data-zoom-image />
-  </p>
-
-  <p>
-    <strong>Color:</strong>
-    <%= @product.colour %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= @product.price %>
-  </p>
-
-  <% if signed_in? %>
-    <p><%= form_with(url: '/payment/create') do |form| %>
-      <%= hidden_field_tag(:product_id, @product.id) %>
-      <%= render partial: "shared/stripe_checkout_button", locals: {product: @product}  %>
-    <% end %>
-    </p>
-  <% end %>
-
-  <% if signed_in? && current_user.admin? %>
-  <%= link_to 'Edit', edit_product_path(@product) %> |
-  <% end %>
-  <%= link_to 'Back', products_path %>
-  <div>
-    <p>Average Rating: <div class="rated" data-score="<%= @product.average_rating %>"></div> </p>
-    <% comment = @product.comments.order(rating: :desc).first%>
-  <%= render 'new_comment' %>
-  <%= will_paginate @comments %>
-  <div class="alert alert-info" style="display:none" role="alert">A new comment was posted!</div>
-  <%= render partial: 'comments', locals: {comments: @comments} %>
+        <% if signed_in? %>
+          <p><%= form_with(url: '/payment/create') do |form| %>
+            <%= hidden_field_tag(:product_id, @product.id) %>
+            <%= render partial: "shared/stripe_checkout_button", locals: {product: @product}  %>
+          <% end %>
+          </p>
+        <% end %>
+      
+        <% if signed_in? && current_user.admin? %>
+        <%= link_to 'Edit', edit_product_path(@product) %> |
+        <% end %>
+        <%= link_to 'Back', products_path %>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <p>Average Rating: <div class="rated" data-score="<%= @product.average_rating %>"></div> </p>
+      <% comment = @product.comments.order(rating: :desc).first%>
+      <%= render 'new_comment' %>
+      <%= will_paginate @comments %>
+      <div class="alert alert-info" style="display:none" role="alert">A new comment was posted!</div>
+      <%= render partial: 'comments', locals: {comments: @comments} %>
+    </div>
+  <!--Add this partial to the products show view after the product details by adding this to the bottom of products\show.html.erb. -->
   </div>
-<!--Add this partial to the products show view after the product details by adding this to the bottom of products\show.html.erb. -->
-</div>
 </div>
