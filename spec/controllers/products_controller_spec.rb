@@ -21,15 +21,30 @@ describe ProductsController, type: :controller do
     after do
       sign_out @admin
     end
-    it 'should be allowed to create a new product' do
+    it 'should be allowed to view new product form' do
       get :new
       expect(response).to have_http_status(200)
       expect(response).to render_template('new')
     end
-    it 'should be allowed to update a product' do
+    it 'should be allowed to create a new product' do
+      post :create, params: {product: {name: "Test", price: 100}}
+      expect(response).to have_http_status(302)
+    end
+    it 'should failed to create a new product' do
+      post :create, params: {product: {name: "Test", price: "nonumber"}}
+      expect(response).to have_http_status(200)
+      expect(response).to render_template('new')
+    end
+    it 'should be allowed to edit a product' do
       get :edit, params: { id: @product2.id }
       expect(response).to have_http_status(200)
       expect(response).to render_template('edit')
+    end
+    it 'should be allowed to update a product' do
+      put :update, params: {  id: @product2.id,
+        product: { id: @product2.id, name: @product2.name, price: @product2.price }
+      }
+      expect(response).to have_http_status(302)
     end
     it 'should be allowed to delete a product' do
       delete :destroy, params: { id: @product2.id }
@@ -44,11 +59,21 @@ describe ProductsController, type: :controller do
       sign_out @user
     end
     it 'should not be allowed to create a new product' do
+      post :create, params: {product: {name: "Test", price: 100}}
+      expect(response).to have_http_status(403)
+    end
+    it 'should not be allowed to view new product page' do
       get :new
       expect(response).to have_http_status(403)
     end
-    it 'should not be allowed to update a product' do
+    it 'should not be allowed to view product edit page' do
       get :edit, params: { id: @product2.id }
+      expect(response).to have_http_status(403)
+    end
+    it 'should not be allowed to update a product' do
+      put :update, params: {  id: @product2.id,
+        product: { id: @product2.id, name: @product2.name, price: @product2.price }
+      }
       expect(response).to have_http_status(403)
     end
     it 'should not be allowed to delete a product' do
