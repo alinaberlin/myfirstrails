@@ -6,6 +6,7 @@ class PaymentController < ApplicationController
     @product = Product.find(prid)
     @user = current_user
     token = params[:stripeToken]
+    @redirect_path = product_path(@product)
     # Create the charge on Stripe's servers - this will charge the user's card
     begin
       charge = Stripe::Charge.create(
@@ -17,8 +18,9 @@ class PaymentController < ApplicationController
       )
       #create a new order if payment is succesfull(6.6)
       if charge.paid
-        Order.create(user: @user, product: @product, total: @product.price)
+        @order = Order.create!(user: @user, product: @product, total: @product.price)
         flash[:notice] = "Your payment has been processed successfully"
+        @redirect_path = order_path(@order)
       end
       #catching the Stripe::CardError error and handling it 
     rescue Stripe::CardError => e
@@ -35,8 +37,9 @@ class PaymentController < ApplicationController
       puts "Decline code is: #{err[:decline_code]}" if err[:decline_code]
       puts "Param is: #{err[:param]}" if err[:param]
       puts "Message is: #{err[:message]}" if err[:message]
+      flash[:error] = "Your payment has been rejected"
     end
-    redirect_to product_path(@product)
+    redirect_to @redirect_path
   end
   
 end
